@@ -65,7 +65,6 @@ namespace TriviaMaze
             }catch(ArgumentException ex)
             {
                 Log("Cannot move out of bounds");
-                //Log(ex.StackTrace);
                 
             }
         }
