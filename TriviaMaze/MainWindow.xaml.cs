@@ -21,19 +21,11 @@ namespace TriviaMaze
     /// </summary>
     public partial class MainWindow : Window
     {
+        TriviaBoard TheBoard;
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void Ellipse_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void Grid_KeyDown(object sender, KeyEventArgs e)
-        {
-            Debug.WriteLine(e.Key);
+            TheBoard = new TriviaBoard();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -47,19 +39,35 @@ namespace TriviaMaze
                 switch (e.Key)
                 {
                     case Key.Up:
-                        Player.SetValue(Grid.RowProperty, (int)(Player.GetValue(Grid.RowProperty)) - 1);
+                        if (TheBoard.MoveUp())
+                        {
+                            Player.SetValue(Grid.RowProperty, (int)(Player.GetValue(Grid.RowProperty)) - 1);
+
+                        }
                         break;
 
                     case Key.Down:
-                        Player.SetValue(Grid.RowProperty, (int)(Player.GetValue(Grid.RowProperty)) + 1);
+                        if (TheBoard.MoveDown())
+                        {
+                            Player.SetValue(Grid.RowProperty, (int)(Player.GetValue(Grid.RowProperty)) + 1);
+
+                        }
                         break;
 
                     case Key.Left:
-                        Player.SetValue(Grid.ColumnProperty, (int)(Player.GetValue(Grid.ColumnProperty)) - 1);
+                        if (TheBoard.MoveLeft())
+                        {
+                            Player.SetValue(Grid.ColumnProperty, (int)(Player.GetValue(Grid.ColumnProperty)) - 1);
+
+                        }
                         break;
 
                     case Key.Right:
-                        Player.SetValue(Grid.ColumnProperty, (int)(Player.GetValue(Grid.ColumnProperty)) + 1);
+                        if(TheBoard.MoveRight())
+                        {
+                            Player.SetValue(Grid.ColumnProperty, (int)(Player.GetValue(Grid.ColumnProperty)) + 1);
+
+                        }
                         break;
                 }
             }catch(ArgumentException ex)
